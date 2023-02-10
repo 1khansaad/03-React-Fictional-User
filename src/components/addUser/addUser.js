@@ -16,15 +16,39 @@ const AddUser = (props) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(currentUserAge, currentUserName);
+
+    if (
+      currentUserName.trim().length === 0 ||
+      currentUserAge.trim().length === 0
+    ) {
+      return;
+    }
+    if (+currentUserAge < 0) {
+      return;
+    }
+
+    console.log(currentUserName, currentUserAge);
+
+    setUserAge("");
+    setUserName("");
   };
   return (
     <Card className={classes.input}>
       <form onSubmit={onSubmitHandler}>
         <label htmlFor="username">UserName!</label>
-        <input type="text" id="username" onChange={setUserNameHandler}></input>
+        <input
+          type="text"
+          id="username"
+          value={currentUserName}
+          onChange={setUserNameHandler}
+        ></input>
         <label htmlFor="age">Age(years)</label>
-        <input type="number" id="age" onChange={setUserAgeHandler}></input>
+        <input
+          type="number"
+          id="age"
+          value={currentUserAge}
+          onChange={setUserAgeHandler}
+        ></input>
         <Button type="submit">Add User</Button>
       </form>
     </Card>
