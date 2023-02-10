@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import AddUser from "./components/addUser/addUser";
 import UserList from "./components/userList/UserList";
 
-const array = [
-  {
-    name: "saad",
-    age: 21,
-  },
-];
+const userData = [];
+
 function App() {
+  const [currentState, setCurrentState] = useState(userData);
+  const dataHandler = (user) => {
+    setCurrentState((old) => [user, ...old]);
+    userData.push(user);
+    console.log(userData);
+  };
   return (
     <div>
-      <AddUser />
-      <UserList users={array} />
+      <AddUser dataFun={dataHandler} />
+      <UserList users={currentState} />
     </div>
   );
 }
