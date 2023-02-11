@@ -1,13 +1,12 @@
 import classes from "./Error.module.css";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
+import React from "react";
 
 const ErrorModal = (props) => {
-  const modalHendler = () => {
-    props.fun(false);
-  };
   return (
-    <div className={classes.backdrop}>
+    <React.Fragment>
+      <div className={classes.backdrop} onClick={props.fun}></div>;
       <Card className={classes.modal}>
         <header className={classes.header}>
           <h2>{props.title}</h2>
@@ -16,10 +15,10 @@ const ErrorModal = (props) => {
           <p>{props.message}</p>
         </div>
         <footer className={classes.actions}>
-          <Button onClick={modalHendler}>Okay</Button>
+          <Button onClick={props.fun}>Okay</Button>
         </footer>
       </Card>
-    </div>
+    </React.Fragment>
   );
 };
 
